@@ -1,0 +1,56 @@
+/* body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ 
+#container{
+    display: flex;
+    gap: 2px;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+/* div{
+    flex:1 0 25%;
+    height: 20px;
+    border: 1px black solid;
+} */
+/* 
+.parentDiv{
+    /* border: 1px solid black; */
+    /* display: flex;
+    flex-basis: 10px;
+    gap: 2px;
+}
+
+.childDiv{
+    border: 1px solid black;
+    margin: 1px;
+    display:flex;
+    width: 6.25%;
+    flex-basis: 50px;
+
+} */ 
+
+/* option 2 */
+
+.cell{
+    box-sizing: border-box;
+    flex: 1 0 calc(6.25% - 1px);
+    height: calc(6.25% - 1px);
+    background-color: rgb(217, 217, 180); /* Adjust the background color of the cells */
+
+}
+#container{
+    display: flex;
+    gap: 1px;
+    /* padding: 5px; */
+    border: 1px solid black;
+    flex-wrap: wrap;
+
+    /*Sample container size */
+    width: 300px;
+    height: 300px;
+
+}
