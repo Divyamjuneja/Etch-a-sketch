@@ -21,11 +21,12 @@
 // gridFormation(16,16);
 
 /* Option 2 for grid formation */
-let container = document.getElementById('container');
 let confirmationButton = document.querySelector('#gridNum');
 let side =16;
 
-function gridFormation(side){
+function gridFormation(side,changeColor){
+    let container = document.getElementById('container');
+    container.innerHTML ='';
     for(let i=1;i<=Math.pow(side,2);i++){
         let cell = document.createElement('div');
         cell.classList.add('cell')
@@ -36,30 +37,55 @@ function changeColor(){
     const boxes = document.querySelectorAll('.cell');
 
     boxes.forEach(box => {
-      box.addEventListener('mouseover', ()=> {    
-        box.setAttribute('style', 'background-color: yellow;');
-      });
+        box.addEventListener('mouseover', () => {
+            box.style.backgroundColor = 'yellow';
+        });
     });
+
         }
 
-
-function gridRemoval(side){
-    for(let i=1;i<=Math.pow(side,2);i++){
-        let cells = document.querySelectorAll('.cell');
-        cells.forEach(cell =>{
-            container.removeChild(cell);
-        });
+function sizeCheck(side){
+    if(side>0 && side<100){
+        return true;
+    }
+    else{
+        return false;
     }
 }
-
+function sizeChecker(side){
+    let parsedSide = parseInt(side);
+        let dimensionSide = 100/parsedSide;
+        let flexValue = dimensionSide;
+        let cells = document.querySelectorAll('.cell');
+        cells.forEach(cell=>{
+            cell.style.flexBasis = "calc("+flexValue+"% - 1px)"
+            cell.style.height = "calc("+flexValue+"% - 1px)"
+        });
+        
+}
 function main(){
     gridFormation(side);
-    
+    sizeChecker(side);
+    changeColor();
     confirmationButton.addEventListener('click',()=>{
-        gridRemoval(side);
+        // gridRemoval(side);
         side = prompt("enter the total number of sides");
+        if(sizeCheck(side) == true){
         gridFormation(side);
+        sizeChecker(side);
+        changeColor();
+            
+        }
+        else{
+            alert("enter size between 0-100");
+            gridFormation(16);
+            sizeChecker(16);
+            changeColor();
+
+        }
     })
 } 
 
 main();
+// changeColor();
+// .style.flexBasis = "calc("+flexValue+"%)";
