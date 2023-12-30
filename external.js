@@ -22,23 +22,44 @@
 
 /* Option 2 for grid formation */
 let container = document.getElementById('container');
+let confirmationButton = document.querySelector('#gridNum');
+let side =16;
 
-let input =16;
-function gridFormation(row,column){
-    for(let i=1;i<=row*column;i++){
+function gridFormation(side){
+    for(let i=1;i<=Math.pow(side,2);i++){
         let cell = document.createElement('div');
         cell.classList.add('cell')
         container.appendChild(cell);
     }
 }
+function changeColor(){
+    const boxes = document.querySelectorAll('.cell');
 
-// function change(){
-//     document.querySelector('cell').addEventListener('click',changeCOlor());
-//         return "0";
-//     }
+    boxes.forEach(box => {
+      box.addEventListener('mouseover', ()=> {    
+        box.setAttribute('style', 'background-color: yellow;');
+      });
+    });
+        }
 
-// function changeCOlor(){
-//     return 0;
-// }
-gridFormation(input,input);
-// change();
+
+function gridRemoval(side){
+    for(let i=1;i<=Math.pow(side,2);i++){
+        let cells = document.querySelectorAll('.cell');
+        cells.forEach(cell =>{
+            container.removeChild(cell);
+        });
+    }
+}
+
+function main(){
+    gridFormation(side);
+    
+    confirmationButton.addEventListener('click',()=>{
+        gridRemoval(side);
+        side = prompt("enter the total number of sides");
+        gridFormation(side);
+    })
+} 
+
+main();
